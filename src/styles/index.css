@@ -44,6 +44,17 @@ body {
 .input {
   height: 40px;
   padding: 0 5px;
+  border: 1px solid #ddd;
+
+  color: #333;
+  
+}
+
+.select {
+  height: 40px;
+  padding: 0 5px;
+  background: #fff;
+  border: 1px solid #ddd;
 
   color: #333;
 }

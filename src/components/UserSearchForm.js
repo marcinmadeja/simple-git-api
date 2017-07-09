@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './styles/UserSearchForm.css';
 
-import ApiConnect from './ApiConnect.js';
-
 class UserSearchForm extends Component {
   constructor(props) {
     super(props);

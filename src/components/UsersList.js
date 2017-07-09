@@ -12,23 +12,32 @@ class UsersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchName: 'react',
       users: [],
+      page: 1,
+      totalPages: 1,
       displayList: 'grid',
     };
 
     this.renderUsers = this.renderUsers.bind(this);
     this.searchUsers = this.searchUsers.bind(this);
     this.changeListDisplay = this.changeListDisplay.bind(this);
+    this.changePage = this.changePage.bind(this);
 
     this.baseLink = "https://api.github.com/search/users?q=";
 
     this.getUsers();
   }
 
-  getUsers(name = 'react') {
-    name = encodeURI(name);
-    const apiLink = `${this.baseLink}${name}`;
-    if (!name.length) return false;
+  getUsers() {
+    const searchName = encodeURI(this.state.searchName);
+    let apiLink = `${this.baseLink}${searchName}`;
+    if (!searchName.length) return false;
+
+    if (this.state.page > 0) {
+      apiLink += `&page=${this.state.page}`;
+    }
+
     const postsPromise = fetch(apiLink);
     
     postsPromise
@@ -36,12 +45,26 @@ class UsersList extends Component {
         return data.json(); 
       })
       .then(data => {
-        console.log(data);
-        this.addUsers(data.items);
+        if (data.items) {
+          this.addUsers(data.items);
+          this.setPagination(data.total_count);
+        }
+
+        console.log('------ no results ------------');
       })
       .catch((err) => {
         console.error(err);
       });
+  }
+
+  setPagination(totalCount) {
+    totalCount = parseInt(totalCount);
+    const pages = Math.ceil( totalCount / 30 );
+    this.setState({ 'totalPages': pages });
+  }
+
+  changePage(newPage) {
+    this.setState({ 'page': newPage }, this.getUsers);
   }
 
   addUsers(newUsers) {
@@ -49,7 +72,7 @@ class UsersList extends Component {
   }
 
   searchUsers(name) {
-    this.getUsers(name);
+    this.setState({ searchName: name }, this.getUsers);
   }
 
   changeListDisplay(display) {
@@ -82,7 +105,11 @@ class UsersList extends Component {
           {this.renderUsers()}
         </div>
 
-        <UsersListPagination />
+        <UsersListPagination 
+          currentPage={this.state.page}
+          totalPages={this.state.totalPages}
+          changePage={this.changePage}
+        />
       </main>
     );
   }
