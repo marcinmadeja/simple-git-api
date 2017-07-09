@@ -3,14 +3,22 @@ import './styles/UsersList.css';
 
 import UserListItem from './UserListItem';
 
+import UserSearchForm from './UserSearchForm';
+import UsersListPagination from './UsersListPagination';
+import UserListDisplay from './UsersListDisplay';
+
+
 class UsersList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       users: [],
+      displayList: 'grid',
     };
 
     this.renderUsers = this.renderUsers.bind(this);
+    this.searchUsers = this.searchUsers.bind(this);
+    this.changeListDisplay = this.changeListDisplay.bind(this);
 
     this.baseLink = "https://api.github.com/search/users?q=";
 
@@ -37,8 +45,15 @@ class UsersList extends Component {
   }
 
   addUsers(newUsers) {
-    if (!newUsers.length) return false;
     this.setState({ users: newUsers });
+  }
+
+  searchUsers(name) {
+    this.getUsers(name);
+  }
+
+  changeListDisplay(display) {
+    this.setState({ displayList: display });
   }
 
   renderUsers() {
@@ -46,15 +61,29 @@ class UsersList extends Component {
       <UserListItem 
         key={user.id}
         user={user}
+        searchUsers={this.searchUsers}
+        displayList={this.state.displayList}
       />
     ));
   }
 
   render() {
     return (
-      <div className="UsersList">
-        {this.renderUsers()}
-      </div>
+      <main className="AppMain">
+        <UserSearchForm 
+          searchUsers={this.searchUsers} 
+        />
+
+        <UserListDisplay 
+          changeListDisplay={this.changeListDisplay}
+        />
+
+        <div className="UsersList container">
+          {this.renderUsers()}
+        </div>
+
+        <UsersListPagination />
+      </main>
     );
   }
 }

@@ -1,4 +1,10 @@
 .UsersList {
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+
   display: flex;
   flex-wrap: wrap;
+
+  background: #F5F5F5;  
 }

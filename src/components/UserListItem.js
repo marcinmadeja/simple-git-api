@@ -8,9 +8,11 @@ class UserListItem extends Component {
 
   render() {
     const user = this.props.user;
+    const grid = this.props.displayList;
+    const itemClass = `UserListItem UserListItem__${grid}`;
 
     return (
-      <div className="UserListItem">
+      <div className={itemClass}>
         <div className="UserListItem__wrap">
           <a className="UserListItem__img-wrap" href="#">
             <img className="UserListItem__img" src={user.avatar_url} alt={user.login} />
