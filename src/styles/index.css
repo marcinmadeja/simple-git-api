@@ -2,6 +2,11 @@
   box-sizing: inherit;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -9,9 +14,10 @@ html {
 body {
   font-family: 'Roboto', "Helvetica", sans-serif;
   min-height: 100vh;
-  padding-bottom: 100px;
+  padding-bottom: 115px;
   position: relative;  
-  background: #F5F5F5;
+  background: #263238;
+  color: #333;
 }
 
 .container {
@@ -26,5 +32,5 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
 
-  background: #fff;
+  background: #F5F5F5;
 }

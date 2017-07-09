@@ -4,7 +4,7 @@ import './styles/Footer.css';
 class Footer extends Component {
   render() {
     return (
-      <header className="Footer">Footer</header>
+      <header className="Footer"></header>
     );
   }
 }
