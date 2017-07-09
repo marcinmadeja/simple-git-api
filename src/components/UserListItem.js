@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import './styles/UserListItem.css';
 
 class UserListItem extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const user = this.props.user;
     const grid = this.props.displayList;

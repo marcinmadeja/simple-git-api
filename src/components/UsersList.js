@@ -6,6 +6,7 @@ import UserListItem from './UserListItem';
 import UserSearchForm from './UserSearchForm';
 import UsersListPagination from './UsersListPagination';
 import UserListDisplay from './UsersListDisplay';
+import Notifications from './Notifications';
 
 
 class UsersList extends Component {
@@ -17,6 +18,8 @@ class UsersList extends Component {
       page: 1,
       totalPages: 1,
       displayList: 'grid',
+      notifications: '',
+      notificationsType: 'info'
     };
 
     this.renderUsers = this.renderUsers.bind(this);
@@ -45,12 +48,22 @@ class UsersList extends Component {
         return data.json(); 
       })
       .then(data => {
-        if (data.items) {
+        if (data.items && data.items.length > 0) {
           this.addUsers(data.items);
           this.setPagination(data.total_count);
+        } else if (data.items && data.items.length === 0) {
+          this.addUsers([]);
+          this.setState({
+            'notificationsMsg': 'No results',
+            'notificationsType': 'warning',
+          });
+        } else {
+          this.addUsers([]);
+          this.setState({
+            'notificationsMsg': data.message,
+            'notificationsType': 'danger',
+          });          
         }
-
-        console.log('------ no results ------------');
       })
       .catch((err) => {
         console.error(err);
@@ -58,7 +71,7 @@ class UsersList extends Component {
   }
 
   setPagination(totalCount) {
-    totalCount = parseInt(totalCount);
+    totalCount = parseInt(totalCount, 10);
     const pages = Math.ceil( totalCount / 30 );
     this.setState({ 'totalPages': pages });
   }
@@ -91,6 +104,7 @@ class UsersList extends Component {
   }
 
   render() {
+
     return (
       <main className="AppMain">
         <UserSearchForm 
@@ -103,6 +117,11 @@ class UsersList extends Component {
 
         <div className="UsersList container">
           {this.renderUsers()}
+          <Notifications
+            type={this.state.notificationsType}
+          >
+            {this.state.notificationsMsg}
+          </Notifications>
         </div>
 
         <UsersListPagination 
