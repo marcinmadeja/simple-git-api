@@ -10,12 +10,12 @@ class UserListItem extends Component {
     return (
       <div className={itemClass}>
         <div className="UserListItem__wrap">
-          <a className="UserListItem__img-wrap" href="#">
+          <div className="UserListItem__img-wrap">
             <img className="UserListItem__img" src={user.avatar_url} alt={user.login} />
-          </a>
+          </div>
 
           <div className="UserListItem__details">
-            <h4 className="UserListItem__name"><a href="#">{user.login}</a></h4>
+            <h4 className="UserListItem__name">{user.login}</h4>
             
             <p className="UserListItem__type"><strong>Type:</strong> {user.type}</p>
           </div>
