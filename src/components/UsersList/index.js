@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import './styles/UsersList.css';
+import './UsersList.css';
 
+import { getSearchLink } from './../Helpers/ApiConnect';
 import UserListItem from './UserListItem';
-
 import UserSearchForm from './UserSearchForm';
 import UsersListPagination from './UsersListPagination';
 import UserListDisplay from './UsersListDisplay';
-import Notifications from './Notifications';
+import Notifications from './../Notifications/';
 
 
 class UsersList extends Component {
@@ -27,20 +27,11 @@ class UsersList extends Component {
     this.changeListDisplay = this.changeListDisplay.bind(this);
     this.changePage = this.changePage.bind(this);
 
-    this.baseLink = "https://api.github.com/search/users?q=";
-
     this.getUsers();
   }
 
   getUsers() {
-    const searchName = encodeURI(this.state.searchName);
-    let apiLink = `${this.baseLink}${searchName}`;
-    if (!searchName.length) return false;
-
-    if (this.state.page > 0) {
-      apiLink += `&page=${this.state.page}`;
-    }
-
+    const apiLink = getSearchLink(this.state.searchName, this.state.page);
     const postsPromise = fetch(apiLink);
     
     postsPromise

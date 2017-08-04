@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/UserSearchForm.css';
+import './UserSearchForm.css';
 
 class UserSearchForm extends Component {
   constructor(props) {

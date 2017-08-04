@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/Notifications.css';
+import './Notifications.css';
 
 class Notifications extends Component {
   render() {

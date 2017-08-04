@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/UsersListDisplay.css';
+import './UsersListDisplay.css';
 
 class UsersListDisplay extends Component {
   constructor(props) {

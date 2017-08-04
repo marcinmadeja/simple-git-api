@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './styles/UsersListPagination.css';
+import './UsersListPagination.css';
 
 class UsersListPagination extends Component {
   constructor(props) {
