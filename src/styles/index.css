@@ -1,0 +1,60 @@
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', "Helvetica", sans-serif;
+  min-height: 100vh;
+  padding-bottom: 115px;
+  position: relative;  
+  background: #263238;
+  color: #333;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.btn {
+  height: 40px;
+  min-width: 150px;
+
+  padding: 0 5px;
+
+  border: 1px solid transparent;
+  background: #3b76a0;
+  border-radius: 3px;
+
+  color: #fff;
+  border: 1px solid #ddd;
+}
+
+.input {
+  height: 40px;
+  padding: 0 5px;
+  border: 1px solid #ddd;
+
+  color: #333;
+  
+}
+
+.select {
+  height: 40px;
+  padding: 0 5px;
+  background: #fff;
+  border: 1px solid #ddd;
+
+  color: #333;
+}
