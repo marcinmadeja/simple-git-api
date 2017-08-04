@@ -1,15 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'normalize.css/normalize.css';
 
-import './styles/normalize.css';
 import './assets/styles/fonts.css';
-import './assets/styles/fonts-awesome.css';
-import './styles/index.css';
+import './assets/styles/font-awesome.css';
+import './index.css';
+import App from './App';
 
-import App from './components/App';
 
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
+ReactDOM.render(<App />, document.getElementById('root'));
